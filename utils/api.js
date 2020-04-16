@@ -3,6 +3,8 @@ const axios = require("axios");
 
 const api = {
   getUser(github) {
+
+    //from class excercise
     inquirer
      .then(function({ username }) {
       const {} = response;
@@ -19,3 +21,7 @@ const api = {
 };
 
 module.exports = api;
+
+//GET /users/:username  do I need this?
+//avatar_url for user's picture
+//email for user's contact email

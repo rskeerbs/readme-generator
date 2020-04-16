@@ -1,7 +1,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const api = require('api');
-const generateMarkdown = require('generateMarkdown');
+const api = require('../utils/api');
+const generateMarkdown = require('../utils/generateMarkdown');
 
 
 //ask user questions about their project
@@ -56,19 +56,14 @@ const questions = [
 
   ]);
 
-  //function writeToFile(fileName, data) {
-//}
+function writeToFile(fileName, data) {
 
-  const generateHtml = (answers) => {
+}
 
-  Paste html in here
 
-  }
-  promptUser();
+function init() {
 
-  //function init() {
-
-//}
+}
   //whenever we want to get back data from a function, we need to return it.
   return inquirer.prompt([
   async function init(){
