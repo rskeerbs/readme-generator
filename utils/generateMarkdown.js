@@ -30,9 +30,9 @@ ${data.contributing}
 
 ### Questions
 * User's Profile Picture
-${data.avatar_url}
+![profile picture](${data.avatar_url})
 
-*User's Contact Email
+* User's Contact Email
 ${data.email}
 `;
 }

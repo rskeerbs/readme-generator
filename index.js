@@ -1,7 +1,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const api = require('../utils/api');
-const generateMarkdown = require('../utils/generateMarkdown');
+const api = require('./utils/api');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 
 //ask user questions about their project
@@ -54,87 +54,36 @@ const questions = [
       }
     
 
-  ]);
+  ];
 
-function writeToFile(fileName, data) {
-
-}
-
-
-function init() {
-
-}
-  //whenever we want to get back data from a function, we need to return it.
-  return inquirer.prompt([
   async function init(){
-    //const init = async () => { also works
     try {
-      const answers = await promptUser();
-      const html = generateHtml(answers);
-      await writeFileAsync("readme.html", html);
-      //the await may not be needed, but better safe than sorry
-      console.log("Success");
+      const answers = await inquirer.prompt(questions);
+      const githubData  = await api.getUser(answers.github);
+      
+      let userData = {
+        github: answers.github,
+        project: answers.project,
+        description: answers.description,
+        license: answers.license,
+        installation: answers.installation,
+        test: answers.test,
+        usage: answers.usage,
+        contributing: answers.contributing,
+        avatar_url: githubData.data.avatar_url,
+        email: githubData.data.email
+      }
+      let content = generateMarkdown(userData)
+       console.log(content)
+      
 
     } catch (err) {
       console.log(err)
     }
 
-  }
+    function writeToFile(README, data) {
+      return fs.writeFileSync(path.join(process.cwd(), README.md), data);
+      console.log("File written sucessfully!")
+    }
+
   init();
-
-  //The README will be populated with the following:
-
-  //* At least one badge
-  //* Project title
-  //* Description
-  //* Table of Contents
-  //* Installation
-  //* Usage
-  //* License
-  //* Contributing
-  //* Tests
-  //* Questions
-   // * User GitHub profile picture
-   // * User GitHub email
-  
-   // ## Minimum Requirements
-  
- // * Functional, deployed application.
-  
- // * GitHub repository with a unique name and a README describing project.
-  
-  //* The generated README includes a bio image from the user's GitHub profile.
-  
-  //* The generated README includes the user's email.
-  
-  //* The generated README includes the following sections: 
-    //* Title
-   // * Description
-    //* Table of Contents
-   // * Installation
-    //* Usage
-    //* License
-    //* Contributing
-   // * Tests
-   // * Questions
-  
-  //* The generated README includes 1 badge that's specific to the repository.
-  
-  //```
-  //GIVEN the developer has a GitHub profile and a repository
-  
-  //WHEN prompted for the developer's GitHub username and repo specific information
-  
-  //THEN a README for the repo is generated
-  //```
-  //- - -
-  
-  //## Submission on BCS
-  
-  //You are required to submit the following:
-  
-  //* An animated GIF demonstrating the app functionality
-  
-  //* A generated PDF of your GitHub profile
-  
-  //* The URL of the GitHub repository
