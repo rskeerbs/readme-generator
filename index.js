@@ -3,9 +3,6 @@ const inquirer = require('inquirer');
 const api = require('./utils/api');
 const generateMarkdown = require('./utils/generateMarkdown');
 
-
-//ask user questions about their project
-
 const questions = [
 
     {
@@ -75,16 +72,17 @@ const questions = [
       }
       let content = generateMarkdown(userData)
        console.log(content)
+       writeToFile(content)
        
     } catch (err) {
       console.log(err)
     }
-
-    writeToFile(content)
-
-    function writeToFile(data) {
+ 
+    function writeToFile(data){
       return fs.writeFileSync(path.join(process.cwd(), README.md), data);
-      console.log("File written sucessfully!")
+      console.log("File written successfully!");
     }
+  }
+  
 
   init()
