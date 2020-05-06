@@ -75,13 +75,14 @@ const questions = [
       }
       let content = generateMarkdown(userData)
        console.log(content)
+       writeToFile(content);
       
 
     } catch (err) {
       console.log(err)
     }
 
-    function writeToFile(README, data) {
+    function writeToFile(data) {
       return fs.writeFileSync(path.join(process.cwd(), README.md), data);
       console.log("File written sucessfully!")
     }
