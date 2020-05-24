@@ -1,6 +1,8 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const api = require('./utils/api');
+const path = require('path');
+const process = require('process');
 const generateMarkdown = require('./utils/generateMarkdown');
 
 const questions = [
@@ -73,15 +75,18 @@ const questions = [
       let content = generateMarkdown(userData)
        console.log(content)
        writeToFile(content)
+      
        
     } catch (err) {
       console.log(err)
     }
  
     function writeToFile(data){
-      return fs.writeFileSync(path.join(process.cwd(), README.md), data);
+      console.log("Directory path I'm writing to ", path.join(processcwd(), README.md));
+      return fs.writeFileSync(path.join(process.cwd(), 'README.md'), data);
       console.log("File written successfully!");
     }
+    
   }
   
 
