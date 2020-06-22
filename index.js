@@ -82,8 +82,8 @@ const questions = [
     }
  
     function writeToFile(data){
-      console.log("Directory path I'm writing to ", path.join(processcwd(), README.md));
-      return fs.writeFileSync(path.join(process.cwd(), 'README.md'), data);
+      console.log("Directory path I'm writing to ", path.join(process.cwd(), "README.md"));
+      return fs.writeFileSync(path.join(process.cwd(), "README.md"), data);
       console.log("File written successfully!");
     }
     
